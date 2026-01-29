@@ -3,29 +3,33 @@
 #include "stddef.h"
 #include "string.h"
 
-char map[1][9] = {
-    {"."}, {"."}, {"."},
-    {"."}, {"."}, {"."},
-    {"."}, {"."}, {"."},
+char map[9][1] = {
+    {}, {}, {},
+    {}, {}, {},
+    {}, {}, {},
 };
 
-int laenge = sizeof(map[1]) / sizeof(map[1][0]);
+int laenge = sizeof(map) / sizeof(map[1][0]);
 
 void print_map() {
 
-    printf("%i", &laenge); // ist 9
+    printf("array länge: %i\n", laenge); // ist 9
 
     for (int feld_nr = 0; feld_nr < laenge; feld_nr++) {
-        printf("%c", &map[0][feld_nr]);
+        printf("%c", &map[feld_nr][0]);
         switch (feld_nr) {
-            case 2|| 5 || 8:
+            case 2:
+                printf("\n");
+            case 5:
+                printf("\n");
+            case 8:
                 printf("\n");
         }
     }
 }
 
 void check_on_map(int nr) {
-    if (!map[0][nr]) {
+    if (!map[nr][0]) {
         printf("gültig");
     } else {
         printf("ungültig, schon belegt");
@@ -42,7 +46,8 @@ int main() {
         scanf("%d", &aktuelle_auswahl);
         
         if (!aktuelle_auswahl) {
-            printf("Kein input\n");
+            printf("Bitte eine zahl\n");
+            break;
         } else {
             printf("Input Vorhanden\n");
             print_map();
