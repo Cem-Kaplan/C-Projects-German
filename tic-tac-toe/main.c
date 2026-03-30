@@ -39,7 +39,7 @@ int main() {
             printf("Input Vorhanden\n");
             check_on_map(aktuelle_auswahl);
             print_map();
-        } else if (!aktuelle_auswahl) {
+        } else {
             printf("%iBitte eine zahl\n", aktuelle_auswahl);
         }
     }

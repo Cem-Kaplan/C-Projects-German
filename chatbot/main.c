@@ -2,12 +2,14 @@
 #include <time.h>
 #include <stdbool.h>
 #include <string.h>
+#include <math.h> // Man muss die library beim kompilieren mit -lm hinzufügen, Hä?
 
 //Die Funktionen
 void showMenu();
 void checkInput();
 void showTime();
 void print(char input[]);
+void calc();
 
 bool running = true;
 
@@ -53,8 +55,37 @@ void checkInput() {
         print(hilfe);
     } else if (strcmp(aktueller_input, "Pi") == 0 || strcmp(aktueller_input, "pi") == 0) {
         print(PI);  
+    } else if (strcmp(aktueller_input, "Rechner") == 0 || strcmp(aktueller_input, "rechner") == 0) {
+        calc();
     } else {
         print("Nichts passendes gefunden");
     }
 }
 
+void calc() {
+    print("Rechner geladen");
+    float input1;
+    char symbol;
+    float input2;
+    float ergebnis;
+
+    scanf("%f", &input1);
+    scanf(" %c", &symbol);
+    scanf("%f", &input2);
+
+    switch (symbol)
+    {
+    case '+':
+        ergebnis = input1 + input2;
+        printf("%f.2 %c %f = %f.2 \n", input1, symbol, input2, ergebnis);
+        break;
+    case '^':
+        ergebnis = pow(input1, input2);
+        printf("%f %c %f = %f \n", input1, symbol, input2, ergebnis);
+        break;
+    
+    default:
+        printf("Kein Symbol oder Zahl eingegeben");
+        break;
+    }
+}
